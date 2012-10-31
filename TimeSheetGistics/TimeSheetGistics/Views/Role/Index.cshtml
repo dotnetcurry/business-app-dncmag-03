@@ -1,0 +1,60 @@
+﻿@using Infragistics.Web.Mvc;
+@model IQueryable<TimeSheetGistics.Models.RoleModel>
+<script type="text/javascript">
+//    function saveChanges2() {
+//        $("#indexGrid").igGrid("saveChanges");
+//        return false;
+//    }
+    $.ig.loader(function () {
+        $('#indexGrid').live('iggridupdatingrowadded', function () {
+            $("#indexGrid").igGrid("saveChanges") 
+        });
+        $('#indexGrid').live('iggridupdatingrowdeleted', function (e, args) {
+            $("#indexGrid").igGrid("saveChanges")
+        });
+    });
+</script>
+
+@(Html.Infragistics().Grid(Model).ID("indexGrid")
+    .UpdateUrl("Create")
+    .Columns(column =>
+        {
+            column.For(x => x.RoleName).HeaderText("Available Roles");
+            column.For(x=> x.RoleId).Hidden(true);
+        })
+    .Features(features =>
+    {
+        features.Sorting().Type(OpType.Local);
+        features.Paging().PageSize(30).Type(OpType.Local);
+        features.Selection().Mode(SelectionMode.Row);
+        features.Updating().EnableAddRow(true).EnableDeleteRow(true)
+            .EditMode(GridEditMode.Row)
+            .RowEditDialogContainment("owner")
+            .RowEditDialogWidth("500px")
+            .RowEditDialogHeight("500px")
+            .RowEditDialogOkCancelButtonWidth("100px")
+            .RowEditDialogFieldWidth("150px")
+            .ShowReadonlyEditors(false)
+            .ColumnSettings(settings =>
+            {
+                
+                settings.ColumnSetting().ColumnKey("RoleId").ReadOnly(true);
+                settings.ColumnSetting().ColumnKey("RoleName")
+                    .EditorType(ColumnEditorType.Text).TextEditorOptions(options =>
+                    {
+                        options.ValidatorOptions(option =>
+                        {
+                            option.KeepFocus(ValidatorKeepFocus.Never);
+                            option.BodyAsParent(false);
+                            option.Required(true);
+                        });
+                    });
+            });
+    })
+    .DataSourceUrl(Url.Action("Index"))
+    .DataBind()
+    .Height("500px")
+    .Width("100%")
+    .Render()
+)
+<input type="button" onclick="saveChanges2(); return false;" value="Save Changes" />

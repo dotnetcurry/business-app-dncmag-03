@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheetGistics", "TimeSheetGistics\TimeSheetGistics.csproj", "{870FDA97-ECA6-47C0-92D0-54F802A13C0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheetGistics.Data", "TimeSheetGistics.Data\TimeSheetGistics.Data.csproj", "{B1105A90-B530-4216-842D-644DCA4E106C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DDC9B808-722D-4EB2-9099-07EE28BDEF02}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{870FDA97-ECA6-47C0-92D0-54F802A13C0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{870FDA97-ECA6-47C0-92D0-54F802A13C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{870FDA97-ECA6-47C0-92D0-54F802A13C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{870FDA97-ECA6-47C0-92D0-54F802A13C0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1105A90-B530-4216-842D-644DCA4E106C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1105A90-B530-4216-842D-644DCA4E106C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1105A90-B530-4216-842D-644DCA4E106C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1105A90-B530-4216-842D-644DCA4E106C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

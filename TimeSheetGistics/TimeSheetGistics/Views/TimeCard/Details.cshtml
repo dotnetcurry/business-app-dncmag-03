@@ -1,0 +1,43 @@
+﻿@model TimeSheetGistics.Data.TimeCard
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>TimeCard</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Hours)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Hours)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ParentTimeSheet.Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ParentTimeSheet.Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TaskDetails)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TaskDetails)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

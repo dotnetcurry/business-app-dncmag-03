@@ -1,0 +1,117 @@
+﻿@using Infragistics.Web.Mvc
+@model IQueryable<TimeSheetGistics.Data.TimeSheet>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>
+    Index</h2>
+@(Html.Infragistics()
+    .Grid(Model)
+    .ID("grid1")
+    .Features(features =>
+    {
+        features.Sorting().Type(OpType.Local);
+        features.Updating()
+            .EnableAddRow(true)
+            .EnableDeleteRow(true)
+            .EditMode(GridEditMode.Row)
+            .EnableDataDirtyException(false)
+            .ColumnSettings(cs =>
+            {
+                cs
+                    .ColumnSetting()
+                    .ColumnKey("StartDate")
+                    .EditorType(ColumnEditorType.DatePicker);
+                cs
+                    .ColumnSetting()
+                    .ColumnKey("EndDate")
+                    .EditorType(ColumnEditorType.DatePicker);
+            });
+        features.Resizing().AllowDoubleClickToResize(true);
+        features.Tooltips().Visibility(TooltipsVisibility.Always);
+        features.Paging().PageSize(4).Type(OpType.Local);
+
+    })
+    .AutoGenerateColumns(false)
+    .PrimaryKey("Id")
+    .Columns(column =>
+    {
+        column.For(x => x.Id).HeaderText("Id").Width("50px");
+        column.For(x => x.StartDate).HeaderText("TimeSheet Starts").Width("180px");
+        column.For(x => x.EndDate).HeaderText("TimeSheet End").Width("130px");
+    })
+    .AutoGenerateLayouts(true)
+    .ColumnLayouts(layouts =>
+    {
+        layouts.For(x => x.TimeCards)
+            .Features(features =>
+            {
+                features.Sorting().Type(OpType.Local);
+                features.Updating();
+                features.Resizing();
+                features.Paging()
+                    .PageSize(10)
+                    .Type(OpType.Local)
+                    .PageSizeList(new List<int>() { 2, 3, 5, 10, 20 });
+
+            })
+            .DataSourceUrl(Url.Action("Index"))
+            .PrimaryKey("Id")
+            .ForeignKey("TimeSheetId")
+            .AutoGenerateColumns(false)
+            .Width("100%")
+            .Columns(childcols1 =>
+            {
+                childcols1.For(x => x.Id).HeaderText("Id");
+                childcols1.For(x => x.Title).HeaderText("Title");
+                childcols1.For(x => x.TaskDetails).HeaderText("TaskDetails");
+                childcols1.For(x => x.Hours).HeaderText("# of Hours"); 
+                childcols1.For(x => x.CardDate).HeaderText("Card Date");
+            });
+    })
+    .DataSourceUrl(Url.Action("Index"))
+    .Width("100%")
+    .AutoCommit(true)
+    .DataBind()
+    .Render())
+@*
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ParentProject.ReferenceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParentProject.ReferenceNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+*@

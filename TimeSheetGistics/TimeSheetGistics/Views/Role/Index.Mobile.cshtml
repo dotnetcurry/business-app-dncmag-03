@@ -1,0 +1,31 @@
+﻿@using Infragistics.Web.Mvc.Mobile
+@model IQueryable<TimeSheetGistics.Models.RoleModel>
+@(Html.InfragisticsMobile()
+        .Loader()
+        .ScriptPath(Url.Content("~/Scripts/igmobile/js/"))
+        .CssPath(Url.Content("~/Content/igmobile/css/"))
+                .Theme("windowsphone/dark") // other options are
+        // windowsphone/light, windowsphone/dark
+        // android/hololight, android/holodark
+        //.Resources("igmList")
+        .Render()
+    )
+<div data-role="header">
+    <h1>Available Roles</h1>
+</div>
+<div data-role="content">
+    @( Html
+                .InfragisticsMobile()
+                .ListView(Model as IQueryable<TimeSheetGistics.Models.RoleModel>)
+                .ID("serverSideListView")
+                .ImageMode(ImageMode.None)
+                .Bindings(b =>
+                {
+                    b.HeaderKeyFor(e => e.RoleName)
+                    .PrimaryKeyFor(e => e.RoleId)
+                    .TextKeyFor(e => e.RoleName);
+                })
+                .DataBind()
+                .Render()
+            )
+</div>

@@ -1,0 +1,105 @@
+﻿@using Infragistics.Web.Mvc;
+@model IQueryable<TimeSheetGistics.Data.CompanyBranchUser>
+
+<script type="text/javascript">
+    var lookupBranchList = {};
+    $.ig.loader(function () {
+        $('#indexGrid').live('iggridupdatingrowadded', function () {
+            $("#indexGrid").igGrid("saveChanges")
+        });
+        $('#indexGrid').live('iggridupdatingrowdeleted', function (e, args) {
+            $("#indexGrid").igGrid("saveChanges")
+        });
+        $('#indexGrid').live('rowEditDialogClosed', function (e, args) {
+            $("#indexGrid").igGrid("saveChanges")
+        });
+        fillBranchNameLookup(lookupBranchList);
+    });
+
+    function fillBranchNameLookup(objectToFill) {
+        var colSettings = $("#indexGrid").igGridUpdating("option", "columnSettings");
+        var colSetting;
+        for (var i = 0; i < colSettings.length; i++) {
+            colSetting = colSettings[i];
+            if (colSetting.columnKey === "ParentBranch") {
+                if (colSetting.editorType && colSetting.editorType === "combo") {
+                    var ds = colSetting.editorOptions.dataSource;
+                    var textKey = colSetting.editorOptions.textKey;
+                    var valueKey = colSetting.editorOptions.valueKey;
+                    var item;
+                    for (var j = 0; j < ds.length; j++) {
+                        item = ds[j];
+                        objectToFill[item[valueKey]] = item[textKey];
+                    }
+                }
+                break;
+            }
+        }
+    }
+    function lookupBranchName(productNumber) {
+        return lookupBranchList[productNumber];
+    }
+
+</script>
+<script id="rowEditDialogRowTemplate1" type="text/x-jquery-tmpl">    
+        <tr class="tableBackGround">                
+            <td class="labelBackGround"> ${headerText}
+            </td>
+            <td data-key='${dataKey}'>
+                <input /> 
+            </td>
+        </tr>
+</script>
+@(Html.Infragistics().Grid(Model).ID("indexGrid")
+    .UpdateUrl("Update")
+    .AutoGenerateColumns(false)
+    .Columns(column =>
+        {
+            column.For(x => x.Id).Hidden(true);
+            column.For(x => x.GravatarUrl).HeaderText("Gravatar");
+            column.For(x => x.UserName).HeaderText("User Name");
+            column.For(x => x.Email).HeaderText("Email");
+            column.For(x => x.ParentBranch).HeaderText("Branch").FormatterFunction("lookupBranchName");
+        })
+    .Features(features =>
+    {
+        features.Sorting().Type(OpType.Local);
+        features.Paging().PageSize(30).Type(OpType.Local);
+        features.Selection().Mode(SelectionMode.Row);
+        features.Updating().EnableAddRow(true).EnableDeleteRow(true)
+            .EditMode(GridEditMode.RowEditTemplate)
+            .RowEditDialogContainment("owner")
+            .RowEditDialogWidth("400px")
+            .RowEditDialogHeight("300px")
+            .RowEditDialogOkCancelButtonWidth("100px")
+            .RowEditDialogFieldWidth("200px")
+            .RowEditDialogRowTemplateID("rowEditDialogRowTemplate1")
+            .ShowReadonlyEditors(false)
+            .ColumnSettings(settings =>
+            {
+                settings.ColumnSetting().ColumnKey("GravatarUrl");
+                settings.ColumnSetting().ColumnKey("UserName");
+                settings.ColumnSetting().ColumnKey("RoleName")
+                    .EditorType(ColumnEditorType.Text).TextEditorOptions(options =>
+                    {
+                        options.ValidatorOptions(option =>
+                        {
+                            option.KeepFocus(ValidatorKeepFocus.Never);
+                            option.BodyAsParent(false);
+                            option.Required(true);
+                        });
+                    });
+                settings.ColumnSetting().ColumnKey("ParentBranch")
+                    .EditorType(ColumnEditorType.Combo).ComboEditorOptions(
+                        x => x.DataSource(ViewData["BranchId"])
+                        .TextKey("Name").ValueKey("Id")
+                        );
+
+            });
+    })
+    .DataSourceUrl(Url.Action("Index"))
+    .DataBind()
+    .Height("500px")
+    .Width("100%")
+    .Render()
+)

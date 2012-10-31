@@ -1,0 +1,46 @@
+﻿@model TimeSheetGistics.Data.CompanyBranchUser
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>CompanyBranchUser</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ParentBranch.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ParentBranch.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GravatarUrl)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GravatarUrl)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

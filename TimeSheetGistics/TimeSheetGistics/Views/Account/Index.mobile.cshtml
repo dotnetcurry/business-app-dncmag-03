@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Index.mobile.cshtml";
+}
+@using Infragistics.Web.Mvc.Mobile
+@model IQueryable<TimeSheetGistics.Data.CompanyBranchUser>
+@(Html.InfragisticsMobile()
+        .Loader()
+        .ScriptPath(Url.Content("~/Scripts/igmobile/js/"))
+        .CssPath(Url.Content("~/Content/igmobile/css/"))
+            .Theme("iOS") // other options are
+        // windowsphone/light, windowsphone/dark
+        // android/hololight, android/holodark
+        .Resources("igmList")
+        .Render()
+    )
+<div data-role="header">
+    <h1>
+        Available Roles</h1>
+</div>
+<div data-role="content">
+    @( Html
+                .InfragisticsMobile()
+                        .ListView(Model as IQueryable<TimeSheetGistics.Data.CompanyBranchUser>)
+                .ID("serverSideListView")
+                .ImageMode(ImageMode.ThumbNail)
+                .Bindings(b =>
+                {
+                    b.HeaderKeyFor(e => e.UserName)
+                    .PrimaryKeyFor(e => e.Id)
+                    .TextKeyFor(e => e.Email)
+                    .ImageUrlKeyFor(e => e.GravatarUrl);
+                })
+                .ItemDetailsTemplateContainerSelector("UserDetailsContainer")
+                .DataBind()
+                .Render()
+            )
+</div>
+<div id="UserDetailsContainer" class='detail-container'>
+    @Html.Partial("Details")
+</div>

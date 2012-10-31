@@ -1,0 +1,41 @@
+﻿@using Infragistics.Web.Mvc.Mobile
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jquerymobile")
+    @Styles.Render("~/Content/Mobile/css", "~/Content/jquerymobile/css")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="@Url.Content("~/Scripts/igmobile/js/infragistics.mobile.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/igmobile/js/infragistics.mobile.loader.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.mobile.ajaxEnabled = false;
+        });
+
+    </script>
+    <script>
+    @(Html.InfragisticsMobile()
+        .Loader()
+        .ScriptPath(Url.Content("~/Scripts/igmobile/js/"))
+        .CssPath(Url.Content("~/Content/igmobile/css/"))
+        .Theme("iOS") // other options are
+            // windowsphone/light, windowsphone/dark
+            // android/hololight, android/holodark
+            //.Resources("igmList")
+        .Render()
+    )
+    </script>
+</head>
+<body>
+    <div data-role="page" data-theme="a">
+        @Html.Partial("_ViewSwitcher")
+        @RenderSection("featured", false)
+        @RenderBody()
+    </div>
+</body>
+</html>

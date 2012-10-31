@@ -1,0 +1,43 @@
+﻿@model TimeSheetGistics.Data.CompanyBranchUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CompanyBranchUser</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ParentBranch.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ParentBranch.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GravatarUrl)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GravatarUrl)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

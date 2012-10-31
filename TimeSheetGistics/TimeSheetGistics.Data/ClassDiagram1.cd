@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TimeSheetGistics.Data.TimeSheet">
+    <Position X="3.5" Y="6.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAACAEAAAgAEIAIAAAAAAAAgBAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>TimeSheet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ParentProject" />
+      <Property Name="TimeSheetBy" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TimeSheetGistics.Data.Project">
+    <Position X="6.5" Y="7.25" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ACACIAgAAAAAIAIAAAABgAQgAAAAAAAAAAAIAEAAIAA=</HashCode>
+      <FileName>Project.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ParentBranch" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TimeSheetGistics.Data.TimeCard">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAQAEAAAAAIIAIEAAAQgAAAAAAAAABAIAA=</HashCode>
+      <FileName>TimeCard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ParentTimeSheet" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TimeSheetGistics.Data.Company">
+    <Position X="9.75" Y="3.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Company.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeSheetGistics.Data.Location">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAIAEBACAAAAAIAAAACAAAAAEACAAA=</HashCode>
+      <FileName>Location.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeSheetGistics.Data.AccessLog">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAACAAAAAAAAAAIBIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AccessLog.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RelatedCompanyBranchUser" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TimeSheetGistics.Data.Branch">
+    <Position X="7" Y="4" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAKAAIAAAIgAAAAACIAAQQIAAAAAQAAACEAAAAABAA=</HashCode>
+      <FileName>Branch.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Location" />
+      <Property Name="ParentCompany" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TimeSheetGistics.Data.CompanyBranchUser">
+    <Position X="4" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAAAAAAAAAAABAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>CompanyBranchUser.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ParentBranch" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
